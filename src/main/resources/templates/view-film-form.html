@@ -6,7 +6,7 @@
 						ressourcesSupp=~{:: #ressources-css})}">
 <head>
 	<!-- Créer comme titre de page -->
-	<title>Créer</title>
+	<title data-th-text="#{view-film-form.title}"></title>
 	<!-- Ajout de CSS tp-form.css -->
 	<th:block id="ressources-css">
 		<link rel="stylesheet" data-th-href="@{/css/demo-error.css}" />
@@ -14,6 +14,7 @@
 	</th:block>
 </head>
 <body>
+	<h1 data-th-text="#{view-film-form.h1}"></h1>
 	<main>
 		<form data-th-replace="~{fragments/fragment-film-form :: 
 					frag-film-form('Création du film', '/films/creer')}"> 

@@ -1,25 +1,34 @@
 
-<header xmlns:th="http://www.thymeleaf.org" data-th-fragment="frag-entete">
-	<h1 id="nav-title">
-		<a href="/">
-			<img data-th-src="@{/images/logoFilmotheque.png}" alt="logo du site">
-			Filmothèque
-		</a>
-		<th:block data-th-if="${membreEnSession != null && membreEnSession.id > 0}">
-			<span data-th-text="'['+ ${membreEnSession.prenom} +']'"></span>
-		</th:block>
-	</h1>
+<header xmlns:th="http://www.thymeleaf.org"
+	data-th-fragment="frag-entete">
+	<section id="nav-title">
+		<h1>
+			<a href="/">
+				<img data-th-src="@{/images/logoFilmotheque.png}">
+				<span href="/" data-th-text="#{nom-application}"></span>
+			</a>
+
+			<th:block
+				data-th-if="${membreEnSession != null && membreEnSession.id > 0}">
+				<span data-th-text="'['+ ${membreEnSession.prenom} +']'"></span>
+			</th:block>
+		</h1>
+		<div>
+			<a href="/?language=fr"><img alt="Français"
+				src="/images/French.webp"></a> <a href="/?language=en"><img
+				alt="English" src="/images/English.webp"></a>
+		</div>
+	</section>
 	<nav>
 		<ul>
-			<li>
-				<a href="/films">Films</a>
+			<li><a href="/films" data-th-text="#{frag-entete.a.films}"></a>
 			</li>
-			
-			<li data-th-if="${membreEnSession != null && membreEnSession.id > 0 && membreEnSession.admin}">
-				<a href="/films/creer">Créer</a>
+
+			<li
+				data-th-if="${membreEnSession != null && membreEnSession.id > 0 && membreEnSession.admin}">
+				<a href="/films/creer" data-th-text="#{frag-entete.a.films.creer}"></a>
 			</li>
-			<li>
-				<a href="/contexte">Contextes</a>
+			<li><a href="/contexte" data-th-text="#{frag-entete.a.contexte}"></a>
 			</li>
 		</ul>
 	</nav>

@@ -5,7 +5,7 @@
 	<div data-th-replace="~{fragments/errors/fragment-errors :: frag-errors}"></div>
 	<ul class="flex-outer">
 		<li>
-			<label for="inputGenre">Genre : </label>
+			<label for="inputGenre" data-th-text="#{frag-film-form.genre}"></label>
 			<th:block data-th-if="${#strings.isEmpty(action)}">
 				<input type="text" id="inputGenre" data-th-disabled="${#strings.isEmpty(action)}" data-th-field="*{genre.titre}" />
 			</th:block>
@@ -17,17 +17,17 @@
 			</th:block>
 		</li>
 		<li>
-			<label for="inputYear">Année : </label>
+			<label for="inputYear" data-th-text="#{frag-film-form.annee}"></label>
 			<input type="number" id="inputYear" data-th-disabled="${#strings.isEmpty(action)}" data-th-field="*{annee}" required min="1900" />
 			<div data-th-replace="~{fragments/errors/fragment-error :: frag-error('annee')}"></div>
 		</li>
 		<li>
-			<label for="title">Titre : </label>
+			<label for="title" data-th-text="#{frag-film-form.titre}"></label>
 			<input type="text" id="title" data-th-disabled="${#strings.isEmpty(action)}" data-th-field="*{titre}" required min="1900" />
 			<div data-th-replace="~{fragments/errors/fragment-error :: frag-error('titre')}"></div>
 		</li>
 		<li>
-			<label for="inputDirector">Réalisateur : </label>
+			<label for="inputDirector" data-th-text="#{frag-film-form.realisateur}"></label>
 			<th:block data-th-if="${#strings.isEmpty(action)}">				
 				<input type="text" id="inputDirector" data-th-disabled="${#strings.isEmpty(action)}"
 					data-th-value="${film.realisateur.prenom} + ' ' + ${film.realisateur.nom}" />
@@ -40,12 +40,12 @@
 			</th:block>
 		</li>
 		<li>
-			<label for="inputDuration">Durée : </label>
+			<label for="inputDuration" data-th-text="#{frag-film-form.duree}"></label>
 			<input type="number" id="inputDuration" data-th-disabled="${#strings.isEmpty(action)}" data-th-field="*{duree}" required min="1"/>
 			<div data-th-replace="~{fragments/errors/fragment-error :: frag-error('duree')}"></div>
 		</li>
 		<li data-th-if="${not #lists.isEmpty(film.acteurs)}">
-			<label for="selectActors">Acteur(s) : </label>
+			<label for="selectActors" data-th-text="#{frag-film-form.acteurs}"></label>
 			<th:block data-th-if="${#strings.isEmpty(action)}">
 				<select id="selectActors" data-th-disabled="${#strings.isEmpty(action)}" multiple="multiple">
 					<option data-th-each="item : ${film.acteurs}" data-th-text="'- ' + ${item.prenom} + ' ' + ${item.nom}"></option>
@@ -53,19 +53,19 @@
 			</th:block>
 		</li>
 		<li data-th-if="${!#strings.isEmpty(action)}">
-			<label for="selectActors">Acteur(s) : </label>
+			<label for="selectActors" data-th-text="#{frag-film-form.acteurs}"></label>
 			<select id="selectActors" data-th-field="*{acteurs}" multiple="multiple">
 				<option data-th-each="part: ${participantsEnSession}" data-th-text="${part.prenom} + ' ' + ${part.nom}"
 					data-th-value="${part.id}"></option>
 			</select>
 		</li>
 		<li>
-			<label for="taSynopsis">Synopsis : </label>
+			<label for="taSynopsis" data-th-text="#{frag-film-form.synopsis}"></label>
 			<textarea id="taSynopsis" data-th-disabled="${#strings.isEmpty(action)}" data-th-field="*{synopsis}" rows="3"></textarea>
 			<div data-th-replace="~{fragments/errors/fragment-error :: frag-error('synopsis')}"></div>
 		</li>
 		<li data-th-if="${!#strings.isEmpty(action)}">
-			<button type="submit">Enregistrer</button>
+			<button type="submit" data-th-text="#{frag-film-form.enregistrer}"></button>
 		</li>
 		
 		<th:block data-th-if="${#strings.isEmpty(action) && not #lists.isEmpty(film.avis)}">

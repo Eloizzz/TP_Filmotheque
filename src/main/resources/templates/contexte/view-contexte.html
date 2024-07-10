@@ -6,7 +6,7 @@
 					ressourcesSupp=~{:: #ressources-css})}">
 <head>
 	<!-- Contextes comme titre de page -->
-	<title>Contextes</title>
+	<title data-th-text="#{view-contexte.title}"></title>
 	<!-- Ajout de CSS tp-contexte.css -->
 	<th:block id="ressources-css">
 		<link rel="stylesheet" data-th-href="@{/css/tp-contexte.css}">
@@ -20,6 +20,6 @@
 			<a href="/contexte/session?email=abaille@campus-eni.fr">Anne-Lise</a> 
 			<a href="/contexte/session?email=sgobin@campus-eni.fr">Stéphane[Admin]</a>
 		</th:block>
-		<a href="/contexte/cloture">Déconnexion</a>
+		<a href="/contexte/cloture" data-th-text="#{view-contexte.cloture}"></a>
 	</main>
 </body></html>
