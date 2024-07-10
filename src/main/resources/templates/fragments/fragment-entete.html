@@ -1,0 +1,26 @@
+
+<header xmlns:th="http://www.thymeleaf.org" data-th-fragment="frag-entete">
+	<h1 id="nav-title">
+		<a href="/">
+			<img data-th-src="@{/images/logoFilmotheque.png}" alt="logo du site">
+			Filmothèque
+		</a>
+		<th:block data-th-if="${membreEnSession != null && membreEnSession.id > 0}">
+			<span data-th-text="'['+ ${membreEnSession.prenom} +']'"></span>
+		</th:block>
+	</h1>
+	<nav>
+		<ul>
+			<li>
+				<a href="/films">Films</a>
+			</li>
+			
+			<li data-th-if="${membreEnSession != null && membreEnSession.id > 0 && membreEnSession.admin}">
+				<a href="/films/creer">Créer</a>
+			</li>
+			<li>
+				<a href="/contexte">Contextes</a>
+			</li>
+		</ul>
+	</nav>
+</header>
