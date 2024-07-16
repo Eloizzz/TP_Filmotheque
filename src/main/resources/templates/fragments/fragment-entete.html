@@ -1,17 +1,14 @@
-
 <header xmlns:th="http://www.thymeleaf.org"
 	data-th-fragment="frag-entete">
 	<section id="nav-title">
 		<h1>
-			<a href="/">
-				<img data-th-src="@{/images/logoFilmotheque.png}">
-				<span href="/" data-th-text="#{nom-application}"></span>
-			</a>
-
+			<a href="/"><img data-th-src="@{/images/logoFilmotheque.png}"><span
+				data-th-text="#{nom-application}"></span></a>
 			<th:block
 				data-th-if="${membreEnSession != null && membreEnSession.id > 0}">
-				<span data-th-text="'['+ ${membreEnSession.prenom} +']'"></span>
+				<span data-th-text="'['+ ${membreEnSession.prenom}+']'"></span>
 			</th:block>
+
 		</h1>
 		<div>
 			<a href="/?language=fr"><img alt="Français"
@@ -21,15 +18,17 @@
 	</section>
 	<nav>
 		<ul>
-			<li><a href="/films" data-th-text="#{frag-entete.a.films}"></a>
-			</li>
+			<li><a href="/films" data-th-text="#{frag-entete.a.films}"></a></li>
+			<!-- Le lien n'est visible que si un membre est présent -->
+			<!-- ET que le membre est un administrateur -->
+			<th:block
+				data-th-if="${membreEnSession != null 
+							&& membreEnSession.id > 0 && membreEnSession.admin}">
+				<li><a href="/films/creer"
+					data-th-text="#{frag-entete.a.films.creer}"></a></li>
+			</th:block>
 
-			<li
-				data-th-if="${membreEnSession != null && membreEnSession.id > 0 && membreEnSession.admin}">
-				<a href="/films/creer" data-th-text="#{frag-entete.a.films.creer}"></a>
-			</li>
-			<li><a href="/contexte" data-th-text="#{frag-entete.a.contexte}"></a>
-			</li>
+			<li><a href="/contexte" data-th-text="#{frag-entete.a.contexte}"></a></li>
 		</ul>
 	</nav>
 </header>

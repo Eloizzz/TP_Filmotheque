@@ -3,12 +3,14 @@ package fr.eni.tp.filmotheque.bll.mock;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import fr.eni.tp.filmotheque.bll.contexte.ContexteService;
 import fr.eni.tp.filmotheque.bo.Membre;
 
 @Service
+@Profile("dev")
 public class ContexteServiceBouchon implements ContexteService {
 	// Liste des membres
 	private static List<Membre> lstMembres;

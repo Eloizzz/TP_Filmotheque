@@ -1,11 +1,7 @@
 package fr.eni.tp.filmotheque.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 import fr.eni.tp.filmotheque.bll.contexte.ContexteService;
@@ -55,7 +51,7 @@ public class ContexteController {
 
 		return "redirect:/films";
 	}
-	
+
 	@GetMapping("/cloture")
 	public String finSession(SessionStatus status) {
 		// Suppression des attributs de @SessionAttributs
@@ -63,7 +59,7 @@ public class ContexteController {
 
 		return "redirect:/films";// Redirection
 	}
-	
+
 	@GetMapping
 	public String choixContexte() {
 		return "contexte/view-contexte";

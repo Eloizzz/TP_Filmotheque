@@ -15,9 +15,8 @@
 
 </head>
 <body>	<!--~{} -->		
-	<h1 data-th-text="#{view-film-detail.h1}"></h1>
 	<main>
-		<form data-th-replace="~{fragments/fragment-film-form :: frag-film-form('Détail du film', ~{})}">
+		<form data-th-replace="~{fragments/fragment-film-form :: frag-film-form(#{view-film-detail.h1}, ~{})}">
 		</form>
 	</main>
 

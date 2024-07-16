@@ -3,13 +3,27 @@ package fr.eni.tp.filmotheque.bo;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Avis implements Serializable {
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
+public class Avis implements Serializable {/**
+	 * Numéro de sérialisation
+	 */
 	private static final long serialVersionUID = 1L;
 	private long id;
+	
+	@Min(value = 0)
+	@Max(value = 5)
 	private int note;
+	
+	@NotBlank
+	@Size(min = 1, max = 250)
 	private String commentaire;
-
-	// Association avec Membre
+	
+	@NotNull
 	private Membre membre;
 
 	public Avis() {
@@ -61,18 +75,6 @@ public class Avis implements Serializable {
 	}
 
 	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Avis de ");
-		builder.append(membre.toString());
-		builder.append(" - note=");
-		builder.append(note);
-		builder.append(", commentaire=");
-		builder.append(commentaire);
-		return builder.toString();
-	}
-
-	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
@@ -87,6 +89,18 @@ public class Avis implements Serializable {
 			return false;
 		Avis other = (Avis) obj;
 		return id == other.id;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Avis de ");
+		builder.append(membre);
+		builder.append(" - note=");
+		builder.append(note);
+		builder.append(", commentaire=");
+		builder.append(commentaire);
+		return builder.toString();
 	}
 
 }

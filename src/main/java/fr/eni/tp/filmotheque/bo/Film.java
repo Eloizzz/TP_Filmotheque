@@ -11,76 +11,53 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 public class Film implements Serializable {
+	/**
+	 * Numéro de sérialisation
+	 */
 	private static final long serialVersionUID = 1L;
 	private long id;
-	
 	@NotBlank
 	@Size(max = 250)
 	private String titre;
-	
-	@NotNull
-	@Min(1900)
+
+	@Min(value = 1900)
 	private int annee;
-	
-	@Min(1)
+
+	@Min(value = 1)
 	private int duree;
-	
+
+	@NotBlank
 	@Size(min = 20, max = 250)
 	private String synopsis;
 
-	// Association avec Participant - realisateur
 	@NotNull
 	private Participant realisateur;
 
-	// Association avec Participant - acteurs
-	private List<Participant> acteurs;
-	
 	@NotNull
-	// Association avec Genre - genre
 	private Genre genre;
 
-	// Association Avis
+	private List<Participant> acteurs;
 	private List<Avis> avis;
+
 
 	public Film() {
 		acteurs = new ArrayList<>();
 		avis = new ArrayList<>();
 	}
 
+	public Film(String titre, int annee, int duree, String synopsis) {
+		this();
+		this.titre = titre;
+		this.annee = annee;
+		this.duree = duree;
+		this.synopsis = synopsis;
+		acteurs = new ArrayList<>();
+		avis = new ArrayList<>();
+	}
+
 	public Film(long id, String titre, int annee, int duree, String synopsis) {
-		this();
+		this(titre, annee, duree, synopsis);
 		this.id = id;
-		this.titre = titre;
-		this.annee = annee;
-		this.duree = duree;
-		this.synopsis = synopsis;
-	}
-
-	public Film(String titre, int annee, int duree, String synopsis, Participant realisateur, List<Participant> acteurs,
-			Genre genre, List<Avis> avis) {
-		this();
-		this.titre = titre;
-		this.annee = annee;
-		this.duree = duree;
-		this.synopsis = synopsis;
-		this.realisateur = realisateur;
-		this.acteurs = acteurs;
-		this.genre = genre;
-		this.avis = avis;
-	}
-
-	public Film(long id, String titre, int annee, int duree, String synopsis, Participant realisateur,
-			List<Participant> acteurs, Genre genre, List<Avis> avis) {
-		this();
-		this.id = id;
-		this.titre = titre;
-		this.annee = annee;
-		this.duree = duree;
-		this.synopsis = synopsis;
-		this.realisateur = realisateur;
-		this.acteurs = acteurs;
-		this.genre = genre;
-		this.avis = avis;
 	}
 
 	public long getId() {
@@ -160,20 +137,19 @@ public class Film implements Serializable {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Film (");
 		builder.append(id);
-		builder.append(")\n\tTitre : ");
+		builder.append(")\n\ttitre : ");
 		builder.append(titre);
-		builder.append(" [annee :");
+		builder.append("[annee : ");
 		builder.append(annee);
 		builder.append(", duree : ");
 		builder.append(duree);
-		builder.append(" minutes]");
-		builder.append("\n\tSynopsis : ");
+		builder.append(" minutes]\n\tSynopsis : ");
 		builder.append(synopsis);
-		builder.append("\n\tRealisateur : ");
+		builder.append("\n\trealisateur : ");
 		builder.append(realisateur);
-		builder.append("\n\tActeurs : ");
+		builder.append("\n\tacteurs : ");
 		builder.append(acteurs);
-		builder.append("\n\tGenre : ");
+		builder.append("\n\tgenre : ");
 		builder.append(genre);
 		builder.append("\n\tAvis : ");
 		builder.append(avis);
@@ -182,7 +158,7 @@ public class Film implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, titre);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -194,7 +170,7 @@ public class Film implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Film other = (Film) obj;
-		return id == other.id && Objects.equals(titre, other.titre);
+		return id == other.id;
 	}
 
 }

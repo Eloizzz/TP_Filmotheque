@@ -1,6 +1,9 @@
 package fr.eni.tp.filmotheque.bo;
 
 public class Participant extends Personne {
+	/**
+	 * Numéro de sérialisation
+	 */
 	private static final long serialVersionUID = 1L;
 
 	public Participant() {
@@ -13,5 +16,4 @@ public class Participant extends Personne {
 	public Participant(long id, String nom, String prenom) {
 		super(id, nom, prenom);
 	}
-
 }

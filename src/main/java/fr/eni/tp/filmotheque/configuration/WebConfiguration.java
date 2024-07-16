@@ -1,5 +1,4 @@
 package fr.eni.tp.filmotheque.configuration;
-
 import java.util.Locale;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,24 +9,22 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 @Configuration
-public class WebConfiguration implements WebMvcConfigurer {
+public class WebConfiguration implements WebMvcConfigurer{
 	@Bean
 	LocaleResolver localeResolver() {
 		System.out.println("localeResolver");
-		SessionLocaleResolver slr = new SessionLocaleResolver();
-		slr.setDefaultLocale(new Locale("fr"));
-		return slr;
-	}
-
+	    SessionLocaleResolver slr = new SessionLocaleResolver();
+	    slr.setDefaultLocale(new Locale("fr"));
+	    return slr;
+	}	
 	@Bean
 	LocaleChangeInterceptor localeChangeInterceptor() {
-		LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
-		localeChangeInterceptor.setParamName("language");
-		return localeChangeInterceptor;
-	}
-
+	   LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+	   localeChangeInterceptor.setParamName("language");
+	   return localeChangeInterceptor;
+	}	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(localeChangeInterceptor());
+	    registry.addInterceptor(localeChangeInterceptor());
 	}
 }

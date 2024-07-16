@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public abstract class Personne implements Serializable {
+	/**
+	 * Numéro de sérialisation
+	 */
 	private static final long serialVersionUID = 1L;
 	private long id;
 	private String nom;
@@ -18,9 +21,8 @@ public abstract class Personne implements Serializable {
 	}
 
 	public Personne(long id, String nom, String prenom) {
+		this(nom, prenom);// Appel du constructeur précédent
 		this.id = id;
-		this.nom = nom;
-		this.prenom = prenom;
 	}
 
 	public long getId() {
@@ -55,13 +57,13 @@ public abstract class Personne implements Serializable {
 		builder.append(nom);
 		builder.append(" (");
 		builder.append(id);
-		builder.append(")");
+		builder.append(") ");
 		return builder.toString();
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, nom, prenom);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -73,7 +75,7 @@ public abstract class Personne implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Personne other = (Personne) obj;
-		return id == other.id && Objects.equals(nom, other.nom) && Objects.equals(prenom, other.prenom);
+		return id == other.id;
 	}
 
 }

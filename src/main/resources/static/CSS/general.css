@@ -24,7 +24,6 @@ header {
 	align-items: center;
 	padding: 20px 50px;
 	box-shadow: 0 1px 8px #ddd;
-	background-color: #777
 }
 
 #nav-title {
@@ -40,7 +39,7 @@ header li {
 
 header a {
 	text-decoration: none;
-	color:white;
+	color: #555;
 	transition: all 0.3s ease 0s;
 }
 
@@ -69,6 +68,14 @@ main h1 {
 	text-align: center;
 }
 
-#nav-title div>a>img {
-	width: 25px;
-} 
+/* 
+Module 04 - TP 2
+Remplacement de la couleur des liens par défaut à blanc*/
+header a {
+	color: white;
+}
+
+/* 
+Module 04 - TP 6
+I18N*/
+#nav-title div>a>img {width: 25px;}

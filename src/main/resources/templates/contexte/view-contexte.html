@@ -14,7 +14,7 @@
 </head>
 <body>
 	<main>
-		<h1>Contextes</h1>
+		<h1 data-th-text="#{view-contexte.title}"></h1>
 		<th:block data-th-if="${membreEnSession == null || membreEnSession.id == 0}">
 			<a href="/contexte/session?email=jtrillard@campus-eni.fr">Julien</a> 
 			<a href="/contexte/session?email=abaille@campus-eni.fr">Anne-Lise</a> 
