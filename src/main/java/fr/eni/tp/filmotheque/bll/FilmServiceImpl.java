@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.context.annotation.Primary;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.eni.tp.filmotheque.bo.Avis;
 import fr.eni.tp.filmotheque.bo.Film;
@@ -115,6 +116,7 @@ public class FilmServiceImpl implements FilmService {
 	}
 
 	@Override
+	@Transactional
 	public void creerFilm(Film film) {
 		BusinessException be = new BusinessException();
 		boolean isValid = true;
@@ -129,7 +131,12 @@ public class FilmServiceImpl implements FilmService {
 		isValid &= validerSynopsis(film.getSynopsis(), be);
 		if (isValid) {
 			filmDAO.create(film);
-
+			
+			//TEST TRANSACTION - Ajout d'un acteur qui n'existe pas
+//			Participant acteur = new Participant();
+//			acteur.setId(0);
+//			film.getActeurs().add(acteur);
+			
 			long idFilm = film.getId();
 			film.getActeurs().forEach(p -> {
 				participantDAO.createActeur(p.getId(), idFilm);
